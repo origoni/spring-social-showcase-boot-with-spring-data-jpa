@@ -1,0 +1,36 @@
+spring:
+#    mvc:
+#        view:
+#            prefix: /WEB-INF/jsp/
+#            suffix: .jsp
+    social:
+        facebook:
+            app-id: 487654301400466
+            app-secret: 3ec76bf19fbfeaf187a6673d1cf16411
+        twitter:
+            app-id: C5mwhZL6eZX1LLM2sibOdzXde
+            app-secret: 1LsGjDnfKr7ldP1GCtPuUgbhlCXoMhLNQLiji5N8ajp7ycjPum
+#        linkedin:
+#            app-id: 755w9dy0pspwx9
+#            app-secret: JUZjOwXLlKy6YO64
+    jpa:
+        generate-ddl: true
+        show-sql: true
+    h2:
+        console:
+            enabled: true
+   
+logging:
+    level:
+        com.millky.blog: DEBUG
+
+server:
+    error:
+        whitelabel:
+            enabled: false
+            
+spring.thymeleaf.cache: false
+
+# https://github.com/brant-hwang/spring-boot-social-example/blob/master/src/main/resources/application.properties
+spring.social.linkedin.appId: 75zbpq47jddd4s
+spring.social.linkedin.appSecret: UVnBd3t2q6OF3ruA
