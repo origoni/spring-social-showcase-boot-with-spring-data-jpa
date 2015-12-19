@@ -1,3 +1,27 @@
+# Spring Social Showcase with Spring Data JPA
+
+- 최신 라이브러리로 업데이트 하였습니다.
+- localhost:8080 에서 바로 테스트 해볼 수 있도록 수정하였습니다.
+- 링크드인은.. 제외하였습니다. (로컬호스트로 바로 테스트가 잘 안되네요 ㅠ)
+- 메이븐 프로젝트로 변경 하였습니다.
+- JPA지원하도록 수정중에 있습니다. (이것때문에 따로 작업합니다.)
+
+
+### Quick Start
+- JDK 1.8 or later
+- Maven 3.0+
+
+```
+git clone https://github.com/origoni/spring-social-showcase-boot-test.git
+cd spring-social-showcase-boot-test
+mvn spring-boot:run
+```
+
+- visit [http://localhost:8080/](http://localhost:8080/)
+
+
+
+
 Spring Social Showcase (Spring Boot)
 ====================================
 This sample app demonstrates many of the capabilities of the Spring Social project, including:
