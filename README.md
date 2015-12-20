@@ -1,5 +1,7 @@
 # Spring Social Showcase with Spring Data JPA
 
+### from https://github.com/spring-projects/spring-social-samples/tree/master/spring-social-showcase-boot
+
 - 최신 라이브러리로 업데이트 하였습니다.
 - localhost:8080 에서 바로 테스트 해볼 수 있도록 수정하였습니다.
 - 링크드인은.. 제외하였습니다. (로컬호스트로 바로 테스트가 잘 안되네요 ㅠ)
