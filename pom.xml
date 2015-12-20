@@ -8,8 +8,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>spring-social-showcase-boot-test</name>
-	<description>spring-social-showcase-boot</description>
+	<name>spring-social-showcase-boot-with-spring-data-jpa</name>
+	<description>Spring Social Showcase with Spring Data JPA</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
