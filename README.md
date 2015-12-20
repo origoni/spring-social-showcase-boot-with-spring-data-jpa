@@ -14,14 +14,28 @@ SpringBoot + Spring Data JPA + Spring Social
 - JPA지원하도록 수정하였습니다. (이것때문에 따로 작업합니다.)
 
 
-Spring Social Showcase (Spring Boot)
-====================================
+### Quick Start
+
+- JDK 1.8 or later
+- Maven 3.0+
+
+```
+git clone https://github.com/origoni/spring-social-showcase-boot-test.git
+cd spring-social-showcase-boot-test
+mvn spring-boot:run
+```
+
+- visit [http://localhost:8080/](http://localhost:8080/)
+
+
+## Spring Social Showcase (Spring Boot)
+
 This sample app demonstrates many of the capabilities of the Spring Social project, including:
 * Connect to Facebook and Twitter
 * Sign in using Facebook, Twitter in using ProviderSignInController for provider-signin
 
-Step 1: Register your application
----------------------------------
+### Step 1: Register your application
+
 Before you can run the application, you'll need to obtain application credentials from Facebook and Twitter by registering the application with each of the service providers:
 
  * Facebook: https://developers.facebook.com/apps
@@ -29,14 +43,11 @@ Before you can run the application, you'll need to obtain application credential
 
 Be sure to read each platform's usage policies carefully and understand how they impact your use of Spring Social with those platforms.
 
-Step 2: Edit application.yml
------------------------------------
+### Step 2: Edit application.yml
+
 Once you have registered the application, you'll need to edit src/main/resources/application.yml, adding the credentials to the appropriate properties.
 
-Step 3: Run the application
----------------------------
-- JDK 1.8 or later
-- Maven 3.0+
+###Step 3: Run the application
 
 ```
 git clone https://github.com/origoni/spring-social-showcase-boot-test.git
