@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.millky.test</groupId>
-	<artifactId>spring-social-showcase-boot-test</artifactId>
+	<groupId>com.millky.dev</groupId>
+	<artifactId>spring-social-showcase-boot-with-spring-data-jpa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
