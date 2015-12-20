@@ -15,10 +15,21 @@
  */
 package org.springframework.social.showcase.account;
 
-public interface AccountRepository {
-	
-	void createAccount(Account account) throws UsernameAlreadyInUseException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-	Account findAccountByUsername(String username);
-	
+@Repository
+public class AccountRepository {
+
+	@Autowired
+	private AccountDao accountDao;
+
+	public void createAccount(Account account) throws UsernameAlreadyInUseException {
+		accountDao.save(account);
+	}
+
+	public Account findAccountByUsername(String username) {
+		return accountDao.findByUsername(username);
+	}
+
 }

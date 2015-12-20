@@ -15,15 +15,30 @@
  */
 package org.springframework.social.showcase.account;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Entity
+@NoArgsConstructor
 public class Account {
 
-	private final String username;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	private final String password;
+	private String username;
 
-	private final String firstName;
+	private String password;
 
-	private final String lastName;
+	private String firstName;
+
+	private String lastName;
 
 	public Account(String username, String password, String firstName, String lastName) {
 		this.username = username;
@@ -32,19 +47,4 @@ public class Account {
 		this.lastName = lastName;
 	}
 
-	public String getUsername() {
-		return username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
 }

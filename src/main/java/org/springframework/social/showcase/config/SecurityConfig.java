@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// @formatter:off
 		web
 			.ignoring()
-				.antMatchers("/**/*.css", "/**/*.png", "/**/*.gif", "/**/*.jpg");
+				.antMatchers("/h2-console/**", "/**/*.css", "/**/*.png", "/**/*.gif", "/**/*.jpg");
 		// @formatter:on
 	}
 
