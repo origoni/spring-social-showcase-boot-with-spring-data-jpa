@@ -22,11 +22,12 @@
 			<form id="signin" th:action="@{/signin/authenticate}" method="post">
 				<input type="hidden" name="_csrf" th:value="${_csrf.token}"></input>
 				<div class="formInfo">
-			  		<div class="error" th:if="${param.error eq 'bad_credentials'}">
+					<p th:if="${param.logout}" class="alert">You have been logged out</p>
+					<div class="error" th:if="${#httpServletRequest.getParameter('error') eq 'bad_credentials'}">
 			  			Your sign in information was incorrect.
 			  			Please try again or <a th:href="@{/signup}">sign up</a>.
 			  		</div>
-			  		<div class="error" th:if="${param.error eq 'multiple_users'}">
+			  		<div class="error" th:if="${#httpServletRequest.getParameter('error') eq 'multiple_users'}">
 			  			Multiple local accounts are connected to the provider account.
 			  			Try again with a different provider or with your username and password.
 			  		</div>
