@@ -20,8 +20,8 @@ SpringBoot + Spring Data JPA + Spring Social
 - Maven 3.0+
 
 ```
-git clone https://github.com/origoni/spring-social-showcase-boot-test.git
-cd spring-social-showcase-boot-test
+git clone https://github.com/origoni/spring-social-showcase-boot-with-spring-data-jpa.git
+cd spring-social-showcase-boot-with-spring-data-jpa
 mvn spring-boot:run
 ```
 
@@ -50,8 +50,8 @@ Once you have registered the application, you'll need to edit src/main/resources
 ###Step 3: Run the application
 
 ```
-git clone https://github.com/origoni/spring-social-showcase-boot-test.git
-cd spring-social-showcase-boot-test
+git clone https://github.com/origoni/spring-social-showcase-boot-with-spring-data-jpa.git
+cd spring-social-showcase-boot-with-spring-data-jpa
 mvn spring-boot:run
 ```
 
