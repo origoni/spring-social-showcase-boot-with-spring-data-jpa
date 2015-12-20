@@ -67,8 +67,8 @@ public class SignupController {
 		}
 		Account account = createAccount(form, formBinding);
 		if (account != null) {
-			SignInUtils.signin(account.getUsername());
-			providerSignInUtils.doPostSignUp(account.getUsername(), request);
+			SignInUtils.signin(account.getUserId());
+			providerSignInUtils.doPostSignUp(account.getUserId(), request);
 			return "redirect:/";
 		}
 		return null;
@@ -78,11 +78,11 @@ public class SignupController {
 	
 	private Account createAccount(SignupForm form, BindingResult formBinding) {
 		try {
-			Account account = new Account(form.getUsername(), form.getPassword(), form.getFirstName(), form.getLastName());
+			Account account = new Account(form.getUserId(), form.getPassword(), form.getFirstName(), form.getLastName());
 			accountRepository.createAccount(account);
 			return account;
 		} catch (UsernameAlreadyInUseException e) {
-			formBinding.rejectValue("username", "user.duplicateUsername", "already in use");
+			formBinding.rejectValue("userId", "user.duplicateUsername", "already in use");
 			return null;
 		}
 	}

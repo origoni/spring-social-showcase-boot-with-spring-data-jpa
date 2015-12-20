@@ -15,6 +15,9 @@
  */
 package org.springframework.social.showcase.account;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +35,8 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String username;
+	@Column(unique = true)
+	private String userId;
 
 	private String password;
 
@@ -40,11 +44,13 @@ public class Account {
 
 	private String lastName;
 
-	public Account(String username, String password, String firstName, String lastName) {
-		this.username = username;
+	private Date regDate;
+	
+	public Account(String userId, String password, String firstName, String lastName) {
+		this.userId = userId;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.regDate = new Date();
 	}
-
 }

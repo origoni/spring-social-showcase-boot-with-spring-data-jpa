@@ -15,7 +15,9 @@
  */
 package org.springframework.social.showcase.account;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -25,11 +27,14 @@ public class AccountRepository {
 	private AccountDao accountDao;
 
 	public void createAccount(Account account) throws UsernameAlreadyInUseException {
-		accountDao.save(account);
+		try {
+			accountDao.save(account);
+		} catch (ConstraintViolationException | DataIntegrityViolationException e) {
+			throw new UsernameAlreadyInUseException(account.getUserId());
+		}
 	}
 
-	public Account findAccountByUsername(String username) {
-		return accountDao.findByUsername(username);
+	public Account findAccountByUserId(String userId) {
+		return accountDao.findByUserId(userId);
 	}
-
 }

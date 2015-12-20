@@ -1,10 +1,3 @@
-create table Account (id identity,
-						username varchar unique,
-						password varchar not null,
-						firstName varchar not null, 
-						lastName varchar not null,
-						primary key (id));
-						
 create table UserConnection (userId varchar(255) not null,
 	providerId varchar(255) not null,
 	providerUserId varchar(255),
