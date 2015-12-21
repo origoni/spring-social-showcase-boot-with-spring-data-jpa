@@ -39,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private AccountService accountService;
 
-	@Autowired
-	public void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(accountService).passwordEncoder(passwordEncoder());
 	}
 
@@ -76,13 +76,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		//return NoOpPasswordEncoder.getInstance();
 		return new BCryptPasswordEncoder();
 	}
-
-//	@Bean
-//	public TextEncryptor textEncryptor() {
-//		return Encryptors.noOpText();
-//	}
-
 }
