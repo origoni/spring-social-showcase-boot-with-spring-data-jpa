@@ -18,6 +18,7 @@ package org.springframework.social.showcase.account;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -26,7 +27,11 @@ public class AccountRepository {
 	@Autowired
 	private AccountDao accountDao;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	public void createAccount(Account account) throws UsernameAlreadyInUseException {
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		try {
 			accountDao.save(account);
 		} catch (ConstraintViolationException | DataIntegrityViolationException e) {
