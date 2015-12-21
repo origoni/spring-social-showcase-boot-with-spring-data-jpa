@@ -45,7 +45,7 @@ public class Account {
 	private String lastName;
 
 	private Date regDate;
-	
+
 	public Account(String userId, String password, String firstName, String lastName) {
 		this.userId = userId;
 		this.password = password;

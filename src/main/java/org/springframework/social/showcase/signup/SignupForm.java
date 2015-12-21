@@ -19,6 +19,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.social.connect.UserProfile;
+import org.springframework.util.StringUtils;
 
 import lombok.Data;
 
@@ -38,10 +39,20 @@ public class SignupForm {
 	private String lastName;
 
 	public static SignupForm fromProviderUser(UserProfile providerUser) {
+
 		SignupForm form = new SignupForm();
 		form.setFirstName(providerUser.getFirstName());
 		form.setLastName(providerUser.getLastName());
 		form.setUserId(providerUser.getUsername());
+
+		if (StringUtils.isEmpty(form.getUserId())) {
+			if (StringUtils.isEmpty(providerUser.getEmail())) {
+				form.setUserId(StringUtils.isEmpty(providerUser.getName()) ? "" : providerUser.getName().replaceAll("[ ]+", "").toLowerCase());
+			} else {
+				form.setUserId(providerUser.getEmail().split("[@._]")[0]);
+			}
+		}
+
 		return form;
 	}
 }

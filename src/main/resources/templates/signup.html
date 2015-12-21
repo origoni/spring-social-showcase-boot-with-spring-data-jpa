@@ -32,12 +32,12 @@
 				</div>
 				
 				<fieldset>
+					<label for="userId">UserId <span th:if="${#fields.hasErrors('userId')}" class="error" th:text="${#fields.errors('userId')[0]}">Error</span></label>
+					<input type="text" th:field="*{userId}" />
 					<label for="firstName">First Name <span th:if="${#fields.hasErrors('firstName')}" class="error" th:text="${#fields.errors('firstName')[0]}">Error</span></label>
 					<input type="text" th:field="*{firstName}" />
 					<label for="lastName">Last Name <span th:if="${#fields.hasErrors('lastName')}" class="error" th:text="${#fields.errors('lastName')[0]}">Error</span></label>
 					<input type="text" th:field="*{lastName}" />
-					<label for="userId">UserId <span th:if="${#fields.hasErrors('userId')}" class="error" th:text="${#fields.errors('userId')[0]}">Error</span></label>
-					<input type="text" th:field="*{userId}" />
 					<label for="password">Password (at least 6 characters) <span th:if="${#fields.hasErrors('password')}" class="error" th:text="${#fields.errors('password')[0]}">Error</span></label>
 					<input type="password" th:field="*{password}" />
 				</fieldset>
