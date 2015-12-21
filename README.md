@@ -47,7 +47,7 @@ Be sure to read each platform's usage policies carefully and understand how they
 
 Once you have registered the application, you'll need to edit src/main/resources/application.yml, adding the credentials to the appropriate properties.
 
-###Step 3: Run the application
+### Step 3: Run the application
 
 ```
 git clone https://github.com/origoni/spring-social-showcase-boot-with-spring-data-jpa.git
@@ -58,3 +58,6 @@ mvn spring-boot:run
 - visit [http://localhost:8080/](http://localhost:8080/)
 
 When running the application from the command line, you can access it at http://localhost:8080 from your browser.
+
+### Lombok required
+Lombok -> https://projectlombok.org/ (설치 : http://millky.com/@origoni/post/1164)
