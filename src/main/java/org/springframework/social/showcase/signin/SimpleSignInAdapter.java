@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
@@ -29,16 +30,19 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 public class SimpleSignInAdapter implements SignInAdapter {
 
+	@Autowired
+	private SignInUtils signInUtils;
+
 	private final RequestCache requestCache;
 
 	@Inject
 	public SimpleSignInAdapter(RequestCache requestCache) {
 		this.requestCache = requestCache;
 	}
-	
+
 	@Override
 	public String signIn(String localUserId, Connection<?> connection, NativeWebRequest request) {
-		SignInUtils.signin(localUserId);
+		signInUtils.signin(localUserId);
 		return extractOriginalUrl(request);
 	}
 
@@ -53,12 +57,11 @@ public class SimpleSignInAdapter implements SignInAdapter {
 		removeAutheticationAttributes(nativeReq.getSession(false));
 		return saved.getRedirectUrl();
 	}
-		 
+
 	private void removeAutheticationAttributes(HttpSession session) {
 		if (session == null) {
 			return;
 		}
 		session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 	}
-
 }

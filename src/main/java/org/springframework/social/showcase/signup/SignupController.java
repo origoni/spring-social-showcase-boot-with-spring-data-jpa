@@ -15,12 +15,10 @@
  */
 package org.springframework.social.showcase.signup;
 
-import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.ConnectionFactoryLocator;
-import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.social.showcase.account.Account;
 import org.springframework.social.showcase.account.AccountRepository;
@@ -38,18 +36,16 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 public class SignupController {
 
-	private final AccountRepository accountRepository;
-	private final ProviderSignInUtils providerSignInUtils;
+	@Autowired
+	private SignInUtils signInUtils;
 
-	@Inject
-	public SignupController(AccountRepository accountRepository, 
-		                    ConnectionFactoryLocator connectionFactoryLocator,
-		                    UsersConnectionRepository connectionRepository) {
-		this.accountRepository = accountRepository;
-		this.providerSignInUtils = new ProviderSignInUtils(connectionFactoryLocator, connectionRepository);
-	}
+	@Autowired
+	private AccountRepository accountRepository;
 
-	@RequestMapping(value="/signup", method=RequestMethod.GET)
+	@Autowired
+	private ProviderSignInUtils providerSignInUtils;
+
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public SignupForm signupForm(WebRequest request) {
 		Connection<?> connection = providerSignInUtils.getConnectionFromSession(request);
 		if (connection != null) {
@@ -60,22 +56,23 @@ public class SignupController {
 		}
 	}
 
-	@RequestMapping(value="/signup", method=RequestMethod.POST)
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(@Valid SignupForm form, BindingResult formBinding, WebRequest request) {
 		if (formBinding.hasErrors()) {
 			return null;
 		}
 		Account account = createAccount(form, formBinding);
 		if (account != null) {
-			SignInUtils.signin(account.getUserId());
+			signInUtils.signin(account.getUserId());
 			providerSignInUtils.doPostSignUp(account.getUserId(), request);
+
 			return "redirect:/";
 		}
 		return null;
 	}
 
 	// internal helpers
-	
+
 	private Account createAccount(SignupForm form, BindingResult formBinding) {
 		try {
 			Account account = new Account(form.getUserId(), form.getPassword(), form.getFirstName(), form.getLastName());

@@ -15,16 +15,29 @@
  */
 package org.springframework.social.showcase.signin;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.social.showcase.account.AccountService;
+import org.springframework.stereotype.Component;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Component
 public class SignInUtils {
-	
-	/**
-	 * Programmatically signs in the user with the given the user ID.
-	 */
-	public static void signin(String userId) {
-		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(userId, null, null));	
+
+	@Autowired
+	private AccountService accountService;
+
+	public void signin(String userId) {
+
+		log.info("### userId = {}", userId);
+
+		UserDetails userDetails = accountService.loadUserByUsername(userId);
+		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
-	
 }

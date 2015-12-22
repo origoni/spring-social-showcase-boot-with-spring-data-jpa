@@ -19,7 +19,9 @@
 		</div>
 		
 		<div id="content" layout:fragment="content">
-			<p>Welcome, <span th:text="${account.firstName}">first-name</span>!</p>
+			<p>Welcome2, <span th:text="${username}">first-name</span>!</p>
+			
+			<div th:text="${connectionsToProviders}">${connectionsToProviders}</div>
 			
 			<form method="POST" th:action="@{/signout}">
 				<input type="hidden" name="_csrf" th:value="${_csrf.token}" />

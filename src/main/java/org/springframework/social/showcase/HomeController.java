@@ -15,37 +15,36 @@
  */
 package org.springframework.social.showcase;
 
-import java.security.Principal;
-
-import javax.inject.Inject;
 import javax.inject.Provider;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.showcase.account.AccountRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class HomeController {
-	
-	private final Provider<ConnectionRepository> connectionRepositoryProvider;
-	
-	private final AccountRepository accountRepository;
 
-	@Inject
-	public HomeController(Provider<ConnectionRepository> connectionRepositoryProvider, AccountRepository accountRepository) {
-		this.connectionRepositoryProvider = connectionRepositoryProvider;
-		this.accountRepository = accountRepository;
-	}
+	@Autowired
+	private Provider<ConnectionRepository> connectionRepositoryProvider;
 
 	@RequestMapping("/")
-	public String home(Principal currentUser, Model model) {
+	public String home(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+
+		log.info("### userDetails = {}", userDetails);
+
+		model.addAttribute("username", userDetails.getUsername());
 		model.addAttribute("connectionsToProviders", getConnectionRepository().findAllConnections());
-		model.addAttribute(accountRepository.findAccountByUserId(currentUser.getName()));
+
 		return "home";
 	}
-	
+
 	private ConnectionRepository getConnectionRepository() {
 		return connectionRepositoryProvider.get();
 	}
