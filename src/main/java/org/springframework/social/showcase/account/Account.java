@@ -22,6 +22,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,13 +46,25 @@ public class Account {
 
 	private String lastName;
 
-	private Date regDate;
+	@Column(nullable = false, updatable = false)
+	private Date createdAt;
+
+	private Date updatedAt;
 
 	public Account(String userId, String password, String firstName, String lastName) {
 		this.userId = userId;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.regDate = new Date();
 	}
+	
+    @PrePersist
+    void preInsert() {
+        this.createdAt = new Date();
+    }
+    
+    @PreUpdate
+    void preUpdate() {
+        this.updatedAt = new Date();
+    }
 }

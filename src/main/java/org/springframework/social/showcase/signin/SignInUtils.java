@@ -19,8 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.social.showcase.account.AccountService;
+import org.springframework.social.showcase.account.AccountDetail;
+import org.springframework.social.showcase.account.AccountRepository;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,14 +30,14 @@ import lombok.extern.slf4j.Slf4j;
 public class SignInUtils {
 
 	@Autowired
-	private AccountService accountService;
+	private AccountRepository accountRepository;
 
 	public void signin(String userId) {
 
 		log.info("### userId = {}", userId);
 
-		UserDetails userDetails = accountService.loadUserByUsername(userId);
-		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+		AccountDetail accountDetail = new AccountDetail(accountRepository.findAccountByUserId(userId));
+		Authentication authentication = new UsernamePasswordAuthenticationToken(accountDetail, null, accountDetail.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 }

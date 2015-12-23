@@ -19,8 +19,8 @@ import javax.inject.Provider;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.social.connect.ConnectionRepository;
+import org.springframework.social.showcase.account.AccountDetail;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +35,9 @@ public class HomeController {
 	private Provider<ConnectionRepository> connectionRepositoryProvider;
 
 	@RequestMapping("/")
-	public String home(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String home(@AuthenticationPrincipal AccountDetail userDetails, Model model) {
 
-		log.info("### userDetails = {}", userDetails);
+		log.info("### AccountDetail = {}", userDetails);
 
 		model.addAttribute("username", userDetails.getUsername());
 		model.addAttribute("connectionsToProviders", getConnectionRepository().findAllConnections());
