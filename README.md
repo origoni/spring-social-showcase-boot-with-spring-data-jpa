@@ -10,7 +10,7 @@ SpringBoot + Spring Data JPA + Spring Social
 - 최신 라이브러리로 업데이트 하였습니다. (SpringBoot 1.3.1)
 - localhost:8080 에서 바로 테스트 해볼 수 있도록 수정하였습니다.
 - 링크드인은.. 제외하였습니다. (로컬호스트로 바로 테스트가 잘 안되네요 ㅠ)
-- 메이븐 프로젝트로 변경 하였습니다. (STS설치 후 바로 테스트 가능합니다. 어떠한 추가 플러그인도 필요 없습니다.)
+- 메이븐 프로젝트로 변경 하였습니다. (STS에서 Lombok 플러그인만 설치하면 바로 확인 가능합니다.)
 - JPA지원하도록 수정하였습니다. (이것때문에 따로 작업합니다.)
 
 
@@ -26,6 +26,13 @@ mvn spring-boot:run
 ```
 
 - visit [http://localhost:8080/](http://localhost:8080/)
+
+
+### STS(Spring Tool Suite) 사용시
+Lombok 플러그인 설치필요
+- https://projectlombok.org/
+- http://millky.com/@origoni/post/1164
+
 
 
 ## Spring Social Showcase (Spring Boot)
@@ -60,4 +67,4 @@ mvn spring-boot:run
 When running the application from the command line, you can access it at http://localhost:8080 from your browser.
 
 ### Lombok required
-Lombok -> https://projectlombok.org/ (설치 : http://millky.com/@origoni/post/1164)
+Lombok -> https://projectlombok.org/ (Install : http://millky.com/@origoni/post/1164)
